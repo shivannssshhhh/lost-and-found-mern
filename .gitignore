@@ -1,0 +1,13 @@
+# ─── Root .gitignore ─────────────────────────────────────────────────────────
+node_modules/
+.env
+.DS_Store
+*.log
+
+# Build output
+client/build/
+dist/
+
+# IDE
+.vscode/
+.idea/
