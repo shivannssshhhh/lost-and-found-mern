@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: lost-found-backend
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://shivansh123shs_db_user:Manju12345@cluster0.fnzyxmv.mongodb.net/lost_and_found?retryWrites=true&w=majority&appName=Cluster0
+      - key: JWT_SECRET
+        value: LostFoundSecretKey2024_MERN
+      - key: JWT_EXPIRE
+        value: 7d
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        value: "*"
+
+  - type: web
+    name: lost-found-frontend
+    runtime: static
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://lost-and-found-mern-hddt.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
